@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw
 import os
 from osgeo import gdal, gdalnumeric
 import numpy as np
-import ogr
+import osgeo.ogr
 import glob
 gdal.UseExceptions()
 
@@ -182,7 +182,7 @@ class GeoTiff(object):
         Returns:
 
         """
-        driver = ogr.GetDriverByName('ESRI Shapefile')
+        driver = osgeo.ogr.GetDriverByName('ESRI Shapefile')
         dataSource = driver.Open(shapefile_path, 0)
         if dataSource is None:
             raise IOError('could not open!')
@@ -356,7 +356,7 @@ class GeoShaplefile(object):
         self.feature_num = 0
         self.open_shapefile()
     def open_shapefile(self):
-        driver = ogr.GetDriverByName('ESRI Shapefile')
+        driver = osgeo.ogr.GetDriverByName('ESRI Shapefile')
         dataSource = driver.Open(self.file_path, 0)
         if dataSource is None:
             raise IOError('could not open!')
